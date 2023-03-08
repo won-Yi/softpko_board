@@ -6,15 +6,6 @@ from rest_framework.views import APIView
 from board.models import Board
 from .serializer import BoardListSerializer, BoardSerializer
 
-
-# Create your views here.
-
-# @api_view(['GET'])
-# def index(request):
-#     boards = Board.objects.all()
-
-#     return Response(boards)
-
 class BoardView(APIView):
     def get(self, request):
         board_list = Board.objects.all()
