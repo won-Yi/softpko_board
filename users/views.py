@@ -16,7 +16,7 @@ class UserView(APIView):
             serializer.save()
             return Response({"message":"가입완료"}, status=status.HTTP_200_OK)
         else:
-            return Response({"message": f"(serializer.errors)"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"message": serializer.errors}, status=status.HTTP_401_UNAUTHORIZED)
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairserializer
