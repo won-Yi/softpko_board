@@ -8,7 +8,7 @@ from .serializer import BoardListSerializer, BoardSerializer
 
 class BoardView(APIView):
     def get(self, request):
-        board_list = Board.objects.all()
+        board_list = Board.objects.all().order_by('-created_at')
         serializer = BoardListSerializer(board_list, many=True)
         return Response(serializer.data)
 
@@ -18,7 +18,7 @@ class BoardView(APIView):
             serializer.save()
             return Response(serializer.data)
         else:
-            return Response(serializer.error, status = status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
 
